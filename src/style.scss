@@ -68,3 +68,71 @@
         }
     }
 }
+
+.home{
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container{
+        border: 1px solid white;
+        background-color: rgba(0, 0, 0,0.8);
+        border-radius: 10px;
+        width:65%;
+        height: 80%;
+        display: flex;
+        overflow: hidden;
+        .sidebar{
+            flex:1;
+            border-right:1px solid white;
+            background-color: rgba(0, 0, 0,0.2);
+            .search{
+                border-bottom:1px solid grey ;
+                background-color:rgba(0, 0, 0,0.8) ;
+
+        }
+            .userChat{
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: white;                    
+                background-color: rgba(0, 0, 0,0.2);
+
+                cursor: pointer;
+                &:hover{
+                    background-color:rgba(0, 0, 0,0.7) ;
+                }
+                img{
+                    width:50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                span{
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+                p{
+                    font-size: 14px;
+                    color: grey;
+                }
+            }
+        }
+        .chat{
+
+            flex: 2;
+
+            .messages{
+                padding: 10px;
+                height: 62vh;
+            }
+            .input{
+                height:50px;
+            }
+
+
+        }
+    }
+}
