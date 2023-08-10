@@ -9,11 +9,15 @@ import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 import VolumeUpOutlinedIcon from '@mui/icons-material/VolumeUpOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import { useState } from 'react';
+import PhoneIcon from '@mui/icons-material/Phone';
 import Messages from './Messages';
 import Input from './Input';
+import VideocamIcon from '@mui/icons-material/Videocam';
 
 export default function Chat(){
     const [Mute,Unmute]=useState("false")
+
+
     const toggleMute=()=>{
         Unmute(!Mute)
     }
@@ -28,12 +32,20 @@ export default function Chat(){
           </Typography>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
+          <IconButton size="large" color="inherit">
+          <PhoneIcon/>
+          </IconButton>
+          
+          <IconButton size="large" color="inherit">
+          <VideocamIcon/>
+          </IconButton>
+
+            <IconButton size="large" color="inherit">
+              <Badge  badgeContent={""} color="success">
                 <NotificationsActiveOutlinedIcon />
               </Badge>
             </IconButton>
-            <IconButton onClick={toggleMute} size="large" aria-label="show 4 new mails" color="inherit">
+            <IconButton onClick={toggleMute} size="large" color="inherit">
               {Mute?<VolumeOffOutlinedIcon/>:<VolumeUpOutlinedIcon/>}
             </IconButton>
  

@@ -9,9 +9,36 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase';
+import { useNavigate,Link } from "react-router-dom";
+
+
+
 
 
 export default function Login(){
+  const [err, setErr] = React.useState(false);
+  const navigate=useNavigate()
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //2 doesnt exist its the visiblity button
+    const password = e.target[1].value;
+    const email = e.target[0].value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      navigate("/")
+    } catch (err) {
+      const errorCode = err.code;
+      const errorMessage = err.message;
+      console.log(errorCode, errorMessage)
+      setErr(true);
+    }
+  }
+
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -24,7 +51,7 @@ export default function Login(){
         <div className="formWrapper">
             <span className="logo">WhatsApp</span>
             <span className="title">Login</span>
-            <form>
+            <form onSubmit={handleSubmit}>
             <TextField id="standard-basic" label="Email" variant="standard" type="email" />
 
             {/* Password */}
@@ -48,10 +75,11 @@ export default function Login(){
           />
         </FormControl>
 
+        {err && <span style={{color:"red"}}>Something went Wrong</span>}
 
                 <button>Sign In</button>
             </form>
-            <p>Don't have an account? Register</p>
+            <p>Don't have an account? <Link to="/register">Register</Link></p>
             </div>
             </div>
     )

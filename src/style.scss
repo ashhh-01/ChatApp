@@ -1,3 +1,39 @@
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0,0.8); /* Color of the track */
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the thumb */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker color on hover */
+  }
+
+
+@mixin mobile{
+    @media screen and (max-width:480px) {
+        @content
+    }
+}
+@mixin tablet{
+    @media screen and (max-width:768px) {
+        @content
+    }
+}
+@mixin laptop{
+    @media screen and (max-width:2400px) {
+        @content
+    }
+}
 .formContainer{
     background-color: rgb(7,94,84);
     height: 100vh;
@@ -121,16 +157,94 @@
             }
         }
         .chat{
-
+            display: flex;
+            flex-direction: column;
             flex: 2;
+            height: 80%;
+
+            
 
             .messages{
                 padding: 10px;
-                height: 62vh;
+
+                height:62vh;
+                overflow-y: scroll;
+                overflow-x: hidden; /* Hide horizontal scroll bar */
+               .message{
+                    display:flex ;
+                    gap: 20px;
+                    margin-bottom: 10px;
+                    
+                    .messageInfo{
+                        display: flex;
+                        flex-direction: column;
+                        color: grey;
+                        font-size: 12px;
+                    }
+
+                    .messageContent{
+                        max-width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        p{
+                            padding: 10px 20px;
+                            border-radius: 0 10px 10px 10px;
+                            font-size: 14px;
+                            max-width: max-content;
+                        }
+    
+                    }
+                    .chatimg{
+                        width: 50%;
+                    }
+                    &.owner{
+                        flex-direction:row-reverse ;
+                        .messageContent{
+                            align-items: flex-end ;
+                        p{
+                            background-color: rgba(7,94,84,0.6);
+                            color: rgb(255, 255, 255);
+                            border-radius: 0 10px 10px 10px;
+
+
+                        }
+                    }
+
+                    }
+    
+                }
             }
+
             .input{
                 height:50px;
+                width: 100%;
+                background-color:rgba(0, 0, 0,0.3) ;
+                border: none;
+                display: flex;
+                align-items: center;
+
+                margin-bottom: 1px;
+
+                // justify-content: space-between;
             }
+            input{
+                width: 100%;
+                outline: none;
+                border: none;
+                color: rgba(255, 255, 255,0.6);
+                background-color: rgba(0, 0, 0,0.1) ;
+                font-size: 19px;
+                height: 50px;
+            }
+            .send{
+                display: flex;
+                align-items: center;
+            }
+            .chatIcons{
+                color: white;
+            }
+
 
 
         }

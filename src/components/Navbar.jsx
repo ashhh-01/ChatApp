@@ -10,7 +10,10 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-const settings = ['Profile', 'Logout'];
+import { auth } from '../firebase';
+import {AuthContext} from "../context/AuthContext"
+
+
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -30,6 +33,8 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const {currentUser}=React.useContext(AuthContext)
 
   return (
     <AppBar position="static" sx={{backgroundColor:"black"}}>
@@ -58,7 +63,7 @@ function Navbar() {
           <Box sx={{marginLeft:"auto"}}>
             <Tooltip title="Open settings" >
               <IconButton onClick={handleOpenUserMenu}  >
-                <Avatar className='pfpimg'  alt="Remy Sharp" src="https://cdn.dribbble.com/users/3484830/screenshots/16310649/media/49fbb89808a5b92fbad58d5b6729205c.gif"/>
+                <Avatar className='pfpimg'  alt="Remy Sharp" src={currentUser.photoURL}/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -77,11 +82,10 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography onClick={()=>{signOut(auth)
+                  }} textAlign="center">Logout</Typography>
                 </MenuItem>
-              ))}
             </Menu>
           </Box>
         </Toolbar>
