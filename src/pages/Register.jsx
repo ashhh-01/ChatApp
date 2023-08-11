@@ -14,6 +14,7 @@ import { auth , storage,db} from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
 import { useNavigate,Link } from "react-router-dom";
+import { Alert } from "@mui/material";
 
 
 
@@ -65,8 +66,6 @@ uploadTask.on('state_changed',
     setErr(true)
   }, 
   () => {
-    // Handle successful uploads on complete
-    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
       await updateProfile(res.user,{
         displayName,
@@ -114,7 +113,7 @@ uploadTask.on('state_changed',
           {/* Username */}
           <TextField
             id="standard-basic"
-            label="UserName"
+            label="User Name"
             variant="standard"
             type="text"
           />
@@ -161,7 +160,7 @@ uploadTask.on('state_changed',
             <span>Upload profile</span>
           </label>
           <button>Sign Up</button>
-          {err && <span style={{color:"red"}}>Something went Wrong</span>}
+          {err && <Alert  severity="error">Invalid Email/Password.</Alert>}
         </form>
         <p >Do you have an account? <Link to="/login">Login</Link></p>
       </div>

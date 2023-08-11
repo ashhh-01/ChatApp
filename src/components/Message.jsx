@@ -1,17 +1,39 @@
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
+import { useContext, useEffect, useRef } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 
-export default function Message(){
-    return(
-        <div className="message owner">
-            <div className="messageInfo">
-            <Avatar  alt="Remy Sharp" src="https://cdn.dribbble.com/users/3484830/screenshots/16310649/media/49fbb89808a5b92fbad58d5b6729205c.gif"/>
+export default function Message({ message }) {
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+  const ref = useRef();
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
 
-                <span>Just Now</span>
-            </div>
-                <div className="messageContent">
-                <p>Hello</p>
-                <img className='chatimg' src="https://cdn.dribbble.com/users/3484830/screenshots/16310649/media/49fbb89808a5b92fbad58d5b6729205c.gif" alt="" />
-            </div>
-        </div>
-        )
+  return (
+    <div
+      ref={ref}
+      className={`message ${
+        message.senderId === currentUser.uid ? "owner" : "guest"
+      }`}
+    >
+      <div className="messageInfo">
+        <Avatar
+          alt="Remy Sharp"
+          src={
+            message.senderId === currentUser.uid
+              ? currentUser.photoURL
+              : data.user.photoURL
+          }
+        />
+
+        <span>Just Now</span>
+      </div>
+      <div className="messageContent">
+        {message.text && <p>{message.text}</p>}
+        {message.img && <img className="chatimg" src={message.img} alt="" />}
+      </div>
+    </div>
+  );
 }

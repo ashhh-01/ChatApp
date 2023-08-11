@@ -13,8 +13,11 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import Messages from './Messages';
 import Input from './Input';
 import VideocamIcon from '@mui/icons-material/Videocam';
+import { ChatContext } from '../context/ChatContext';
 
 export default function Chat(){
+  const {data}=React.useContext(ChatContext)
+
     const [Mute,Unmute]=useState("false")
 
 
@@ -28,7 +31,7 @@ export default function Chat(){
       <AppBar position="static" sx={{backgroundColor:"black"}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Jacob
+            {data.user?.displayName}
           </Typography>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
