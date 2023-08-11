@@ -9,22 +9,19 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { createUserWithEmailAndPassword ,updateProfile} from "firebase/auth";
-import { auth , storage,db} from "../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, storage, db } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore"; 
-import { useNavigate,Link } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { useNavigate, Link } from "react-router-dom";
 import { Alert } from "@mui/material";
-
-
 
 export default function Register() {
   const [err, setErr] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const navigate=useNavigate()
-
+  const navigate = useNavigate();
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -40,58 +37,58 @@ export default function Register() {
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-const storageRef = ref(storage, displayName);
+      const storageRef = ref(storage, displayName);
 
-const uploadTask = uploadBytesResumable(storageRef, file);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
-
-uploadTask.on('state_changed', 
-  (snapshot) => {
-    // Observe state change events such as progress, pause, and resume
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-    }
-  }, 
-  (error) => {
-    // Handle unsuccessful uploads
-    console.log(error)
-    setErr(true)
-  }, 
-  () => {
-    getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
-      await updateProfile(res.user,{
-        displayName,
-        photoURL:downloadURL
-      })
-      await setDoc(doc(db, "users",res.user.uid),{
-        uid:res.user.uid,
-        displayName,
-        email,
-        photoURL:downloadURL,
-      })
-      await setDoc(doc(db,"userChats",res.user.uid),{})
-      navigate("/")
-    });
-  }
-);
-
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Observe state change events such as progress, pause, and resume
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+          console.log(error);
+          setErr(true);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            navigate("/");
+          });
+        }
+      );
     } catch (err) {
       const errorCode = err.code;
       const errorMessage = err.message;
-      console.log(errorCode, errorMessage)
+      console.log(errorCode, errorMessage);
       setErr(true);
     }
     // createUserWithEmailAndPassword(auth, email, password)
     //   .then((userCredential) => {
-    //     // Signed in 
+    //     // Signed in
     //     const user = userCredential.user;
     //     console.log(user)
     //     // ...
@@ -160,9 +157,11 @@ uploadTask.on('state_changed',
             <span>Upload profile</span>
           </label>
           <button>Sign Up</button>
-          {err && <Alert  severity="error">Invalid Email/Password.</Alert>}
+          {err && <Alert severity="error">Invalid Email/Password.</Alert>}
         </form>
-        <p >Do you have an account? <Link to="/login">Login</Link></p>
+        <p>
+          Do you have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
     </div>
   );

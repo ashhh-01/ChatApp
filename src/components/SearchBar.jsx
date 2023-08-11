@@ -19,8 +19,6 @@ import { AuthContext } from "../context/AuthContext";
 import { useContext, useState } from "react";
 import { ChatContext } from "../context/ChatContext";
 
-
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -59,11 +57,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
-
-
 export default function SearchBar() {
-  const {dispatch}=useContext(ChatContext)
+  const { dispatch } = useContext(ChatContext);
 
   const [username, setUsername] = React.useState("");
   const [user, setUser] = React.useState(null);
@@ -102,7 +97,6 @@ export default function SearchBar() {
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-
     } catch (err) {
       const errorCode = err.code;
       const errorMessage = err.message;
@@ -114,8 +108,6 @@ export default function SearchBar() {
     setUsername("");
     // const querySnapshot = await getDocs(q);
     // console.log("here",querySnapshot)
-
-
   };
 
   const handleSearch = async () => {
