@@ -76,7 +76,7 @@ export default function Register() {
               photoURL: downloadURL,
             });
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            navigate("/");
+            navigate("/ChatApp/");
           });
         }
       );

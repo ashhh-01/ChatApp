@@ -26,7 +26,7 @@ export default function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      navigate("/ChatApp/");
     } catch (err) {
       const errorCode = err.code;
       const errorMessage = err.message;
