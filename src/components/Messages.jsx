@@ -4,7 +4,6 @@ import Message from "./Message";
 import { doc, onSnapshot } from "firebase/firestore";
 import * as React from "react";
 import { db } from "../firebase";
-import Input from "./Input";
 
 export default function Messages() {
   const [messages, setMessage] = useState([]);

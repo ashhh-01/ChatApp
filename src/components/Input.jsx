@@ -93,6 +93,8 @@ export default function Input() {
   const handleKey = (e) => [e.code === "Enter" && handleSend()];
 
   return (
+    <>
+    {data.user.displayName &&
     <div className="input">
       <input
         type="text"
@@ -125,6 +127,9 @@ export default function Input() {
           <SendIcon />
         </Button>
       </div>
+
     </div>
+      }
+    </>
   );
 }

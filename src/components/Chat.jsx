@@ -28,6 +28,8 @@ export default function Chat() {
       <div className="chatInfo">
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" sx={{ backgroundColor: "black" }}>
+            {data.user.displayName &&
+
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 {data.user?.displayName}
@@ -52,6 +54,7 @@ export default function Chat() {
                 </IconButton>
               </Box>
             </Toolbar>
+}
           </AppBar>
         </Box>
         <Messages />
