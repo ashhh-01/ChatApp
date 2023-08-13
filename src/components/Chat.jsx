@@ -15,11 +15,17 @@ import Input from "./Input";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import { ChatContext } from "../context/ChatContext";
 
+
 export default function Chat() {
+
+
   const { data } = React.useContext(ChatContext);
+  const [notify, setNotify]=useState(true)
 
   const [Mute, Unmute] = useState("false");
-
+  const handleNotify=()=>{
+    setNotify(false)
+  }
   const toggleMute = () => {
     Unmute(!Mute);
   };
@@ -44,8 +50,8 @@ export default function Chat() {
                   <VideocamIcon />
                 </IconButton>
 
-                <IconButton size="large" color="inherit">
-                  <Badge badgeContent={""} color="success">
+                <IconButton size="large" color="inherit" onClick={handleNotify}>
+                  <Badge badgeContent={"4"} invisible={!notify} color="success">
                     <NotificationsActiveOutlinedIcon />
                   </Badge>
                 </IconButton>

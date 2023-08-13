@@ -17,7 +17,16 @@ import {
 import { AuthContext } from "../context/AuthContext";
 
 import { useContext, useState } from "react";
-import { ChatContext } from "../context/ChatContext";
+
+
+
+
+
+
+
+
+
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -58,7 +67,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBar() {
-  const { dispatch } = useContext(ChatContext);
+
+
 
   const [username, setUsername] = React.useState("");
   const [user, setUser] = React.useState(null);
@@ -137,6 +147,7 @@ export default function SearchBar() {
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
+          
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
             onKeyDown={handleKey}
@@ -144,8 +155,41 @@ export default function SearchBar() {
               setUsername(e.target.value);
             }}
             value={username}
+
           />
+          
         </Search>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         {err && <span>User Not Found</span>}
         {user && (
           <div className="userChat" onClick={handleSelect}>

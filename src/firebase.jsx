@@ -4,15 +4,17 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
-
 const firebaseConfig = {
   apiKey: `${import.meta.env.VITE_FIREBASEAPI}`,
+  appId: `${import.meta.env.VITE_APPID}`,
   authDomain: `${import.meta.env.VITE_AUTDOM}`,
   projectId: "chatapp-86d62",
   storageBucket: "chatapp-86d62.appspot.com",
   messagingSenderId: "401830521055",
-  appId: `${import.meta.env.VITE_APPID}`,
   measurementId: "G-KG0PVJ6JZM",
+    apiKey:process.env.VITE_FIREBASEAPI,
+  authDomain:process.env.VITE_AUTDOM,
+  appId:process.env.VITE_APPID,
 };
 
 // Initialize Firebase
