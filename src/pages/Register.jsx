@@ -160,7 +160,7 @@ export default function Register() {
           {err && <Alert severity="error">Invalid Email/Password.</Alert>}
         </form>
         <p>
-          Do you have an account? <Link to="/ChatApp/login">Login</Link>
+          Do you have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </div>

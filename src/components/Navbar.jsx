@@ -208,7 +208,7 @@ function Navbar() {
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose} sx={{alignItems:"center"}}>
-        <Link to="./register" style={{textDecoration: 'none', color:"inherit" }}>
+        <Link to="/register" style={{textDecoration: 'none', color:"inherit" }}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
