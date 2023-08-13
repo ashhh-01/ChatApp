@@ -49,3 +49,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
+      - name: ChatApp Secrets
+        env:
+          VITE_FIREBASEAPI: ${{ secrets.VITE_FIREBASEAPI }}
+          VITE_APPID: ${{ secrets.VITE_APPID }}
+          VITE_AUTDOM: ${{ secrets.VITE_AUTDOM }}
+        run: |
+          echo "Using Firebase API key: $VITE_FIREBASEAPI"
