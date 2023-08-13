@@ -9,12 +9,12 @@
 <li>Real-time messaging: Chat with other users in real-time.</li>
 </ul>
 
-<i>To test you can use the bot to chat with</i>
+<i>To test you can search for the bot to chat with</i>
 
 <h2>Screen Shots</h2>
-<img src="./src/img/login.png">
-<img src="./src/img/logo.png">
-<img src="./src/img/home.png">
+<span><img style="width:50%" src="./src/img/login.png">
+<img style="width:30%" src="./src/img/Register.png"></span>
+<img style="width:50%" src="./src/img/home.png">
 
 <h2>Contributing</h2>
 <p>Contributions are welcome! If you find any bugs or have suggestions for improvements, feel free to create an issue or submit a pull request.</p>
