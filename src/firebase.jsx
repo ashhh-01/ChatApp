@@ -12,9 +12,9 @@ const firebaseConfig = {
   storageBucket: "chatapp-86d62.appspot.com",
   messagingSenderId: "401830521055",
   measurementId: "G-KG0PVJ6JZM",
-    apiKey:process.env.VITE_FIREBASEAPI,
-  authDomain:process.env.VITE_AUTDOM,
-  appId:process.env.VITE_APPID,
+  //   apiKey:process.env.VITE_FIREBASEAPI,
+  // authDomain:process.env.VITE_AUTDOM,
+  // appId:process.env.VITE_APPID,
 };
 
 // Initialize Firebase
