@@ -36,7 +36,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v2
@@ -45,14 +44,11 @@ jobs:
           path: ./dist
 
       - name: Deploy to GitHub Pages
+        env:
+          REACT_APP_FIREBASEAPI: ${{ env.REACT_APP_FIREBASEAPI }}
+          REACT_APP_APPID: ${{ env.REACT_APP_APPID }}
+          REACT_APP_AUTDOM: ${{ env.REACT_APP_AUTDOM }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-
-      - name: ChatApp Secrets
-
-        env:
-          VITE_FIREBASEAPI: ${{ secrets.VITE_FIREBASEAPI }}
-          VITE_APPID: ${{ secrets.VITE_APPID }}
-          VITE_AUTDOM: ${{ secrets.VITE_AUTDOM }}

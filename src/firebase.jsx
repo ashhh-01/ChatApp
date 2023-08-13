@@ -5,9 +5,9 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
-  apiKey: `${import.meta.env.VITE_FIREBASEAPI}`|| process.env.VITE_FIREBASEAPI,
-  appId: `${import.meta.env.VITE_APPID}`|| process.env.VITE_APPID,
-  authDomain: `${import.meta.env.VITE_AUTDOM}`|| process.env.VITE_AUTDOM,
+  apiKey: `${import.meta.env.VITE_FIREBASEAPI}`|| process.env.VITE_FIREBASEAPI|| process.env.REACT_APP_FIREBASEAPI,
+  appId: `${import.meta.env.VITE_APPID}`|| process.env.VITE_APPID|| process.env.REACT_APP_APPID,
+  authDomain: `${import.meta.env.VITE_AUTDOM}`|| process.env.VITE_AUTDOM || process.env.REACT_APP_AUTDOM,
   projectId: "chatapp-86d62",
   storageBucket: "chatapp-86d62.appspot.com",
   messagingSenderId: "401830521055",
